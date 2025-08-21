@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- bootstrap css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css" />
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- html2pdf library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <title>Resume Generator</title>
+  </head>
+  <div class="container" id="resume-form">
+    <h1 class="text-center ">Resume Generator</h1>
+    <p class="text-center">Fill the form below to generate your resume</p>
+
+    <div class="row">
+      <div class="col-md-6">
+        <!-- first col -->
+        <h3>Personal Information</h3>
+
+        <div class="form-group">
+          <label for="nameField">Your Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nameField"
+            placeholder="Enter here"
+          />
+        </div>
+
+        <div class="form-group mt-2">
+          <label for="emailField">Your Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="emailField"
+            placeholder="Enter here"
+          />
+        </div>
+
+        <div class="form-group mt-2">
+          <label for="contactField">Your Phone Number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="contactField"
+            placeholder="Enter here"
+          />
+        </div>
+
+        <div class="form-group mt-2">
+          <label for="addressField">Your Address</label>
+          <textarea
+            class="form-control"
+            id="addressField"
+            placeholder="Enter here"
+            rows="5"
+          ></textarea>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="">Select your photo</label>
+          <input id="imgField" type="file" class="form-control">
+        </div>
+
+        <div class="form-group mt-2">
+          <!-- <p class="text-secondary my-2">Important Links </p>  -->
+          <label for="linkedinField">Your Linkedin profile</label>
+          <input
+            type="url"
+            class="form-control"
+            id="linkedinField"
+            placeholder="Enter here"
+          />
+        </div>
+
+        <div class="form-group mt-2">
+          <label for="githubField">Your Github profile</label>
+          <input
+            type="url"
+            class="form-control"
+            id="githubField"
+            placeholder="Enter here"/>
+        </div>
+
+      </div>
+      
+      <div class="col-md-6">
+        <!-- second col -->
+        
+        <h3>Professional Information</h3>
+
+        <div class="form-group  mt-2">
+          <label for="ObjectiveField">Objective</label>
+          <textarea class="form-control" id="ObjectiveField"
+            placeholder="Enter here" rows="5"></textarea>
+        </div>
+
+         <div class="form-group mt-2" id="we">
+          <label for="Work Experience"> Work Experience</label>
+          <textarea class="form-control weField" placeholder="Enter here" rows="3"></textarea>
+
+                <!--new text-area  -->
+
+            <div class="container text-center mt-2 weAddButton">
+                <button onclick="addNewWEField()" class="btn btn-primary btn-sm">Add</button>
+            </div>
+         </div>
+
+         <div class="form-group mt-2" id="aq">
+          <label for="Academic Qualification">Qualification</label>
+          <textarea class="form-control aqField" placeholder="Enter here" rows="3" ></textarea>
+
+           <!--new textarea  -->
+
+            <div class="container text-center mt-2 aqAddButton">
+                <button onclick="addNewAQField()" class="btn btn-primary btn-sm">Add</button>
+            </div>
+         </div>
+
+         <div class="form-group mt-2">
+           <label for="experienceLevel">Experience Level</label>
+           <select class="form-control" id="experienceLevel">
+             <option value="entry-level">Entry Level (0-2 years)</option>
+             <option value="mid-level" selected>Mid Level (3-7 years)</option>
+             <option value="senior">Senior Level (8+ years)</option>
+           </select>
+         </div>
+
+         <div class="form-group mt-2">
+           <label for="industryField">Industry</label>
+           <select class="form-control" id="industryField">
+             <option value="technology" selected>Technology</option>
+             <option value="healthcare">Healthcare</option>
+             <option value="finance">Finance</option>
+             <option value="education">Education</option>
+             <option value="marketing">Marketing</option>
+             <option value="consulting">Consulting</option>
+             <option value="manufacturing">Manufacturing</option>
+             <option value="retail">Retail</option>
+             <option value="other">Other</option>
+           </select>
+         </div>
+      </div>
+      </div>
+             <div class="container text-center mt-3">
+         <button onclick="generateResume()" class="btn btn-primary btn-lg">Generate Resume</button>
+       </div>
+    </div>
+
+
+
+
+
+    <!-- resume template -->
+
+    <div class="container" id="resume-template">
+     <div class="row">
+
+      <div class="col-md-4 text-center py-5 background">
+      <!-- first col -->
+
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/99d73356-a5c8-465b-9e77-6f96cbd836ee/defmyc8-7cbff1dd-1506-4bbc-8f24-90201b6ff243.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzk5ZDczMzU2LWE1YzgtNDY1Yi05ZTc3LTZmOTZjYmQ4MzZlZVwvZGVmbXljOC03Y2JmZjFkZC0xNTA2LTRiYmMtOGYyNC05MDIwMWI2ZmYyNDMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0._Lk2s-kgFiK2SRrfHgY7FQ9FamdOv3rqGBJ9o6bB23o" alt="img logo" class="img-fluid myimg" id="imgTemplate"/>
+
+      <div class="details">
+        <p id="nameT1"> Vijay Joshi </p>
+        <!-- <h3>Contacts</h3> -->
+        <!-- <hr class="new1">  -->
+        <p id="contactT"><i class="fas fa-phone"></i> +91 8859825840 </p>
+        <p id="emailT"><i class="fas fa-envelope"></i> vijayjoshi2003vj@gmail.com </p>
+        <p id="addressT"><i class="fas fa-map-marker-alt"></i> Haldwani, Nainital </p>
+         <hr class="new1">
+       
+
+        <p>
+          <a id="linkedT" href="#1"><i class="fab fa-linkedin"></i> www.linkedin.com/in/vijay03joshi </a>
+        </p>
+
+        <p>
+          <a id="GithubT" href="#1"><i class="fab fa-github"></i> www.github.com/in/vijay03joshi </a>
+        </p>
+        
+
+        
+      </div>
+      </div>
+
+       <div class="col-md-8"py-5>
+        <!-- second col -->
+        <h1 id="nameT2" style="font-weight: 900;"> Vijay Joshi</h1>
+       
+        <!-- objective card -->
+        <div class="card mt-4" >
+
+          <div class="card-hearder background details">
+            <h3> Objective </h3>
+          </div>
+
+          <div class="card-body">
+            <p id="objectiveT">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat tempora explicabo eveniet pariatur expedita sapiente dignissimos consequuntur omnis eius, quae voluptate assumenda nulla tempore perferendis aliquam possimus necessitatibus ipsa eum.</p>
+          </div>
+
+          <!-- work  experience -->
+
+          <div class="card-hearder background details">
+            <h3> Work Experience </h3>
+          </div>
+
+          <div class="card-body">
+           <ul id="weT">
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, provident.</li>
+
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, provident.</li>
+
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, provident.</li>
+           </ul>
+          </div>
+        </div>
+          <!--academic qualification  -->
+
+          <div class="card-hearder background details">
+            <h3> Academic Qualification </h3>
+          </div>
+
+          <div class="card-body">
+           <ul id="aqT">
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, provident.</li>
+
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, provident.</li>
+
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, provident.</li>
+           </ul>
+          </div>
+        </div>
+
+        <div class="container mb-2 text-center">
+          <button onclick="downloadResume()" class=" background details"> Download PDF </button>
+        </div>
+
+        
+
+       </div>
+     </div>
+    </div>
+
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+
