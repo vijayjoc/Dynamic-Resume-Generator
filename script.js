@@ -152,7 +152,7 @@ function getFallbackSuggestion(type, input) {
 function getCohereAPIKey() {
     // You can replace this with your actual API key
     // For now, using a placeholder - users can add their own key
-    return localStorage.getItem('cohere_api_key') || 'YOUR_COHERE_API_KEY';
+    return localStorage.getItem('cohere_api_key') || 'AIzaSyCgMA5hktBo0v4LvbP8eGQ5j-untu4ezRA';
 }
 
 // Enhanced form with AI suggestions
@@ -288,4 +288,5 @@ function downloadResume(){
 document.addEventListener('DOMContentLoaded', function() {
     addAISuggestionButtons();
 });
+
 
